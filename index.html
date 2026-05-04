@@ -2081,11 +2081,13 @@ function buildContent(){
       if(week.ddia) html += callout('ddia',`📖 DDIA — ${week.ddia.chapter}`,`<p>${week.ddia.note}</p>`)
       // Diagram
       if(week.diagram) html += diagramHTML(week.diagram)
-      // Setup — week-level old format (label+code) only, new format is per-lab
+      // Setup — supports both old format (label+code) and new format (desc+steps)
       if(week.setup && week.setup.label){
         html += `<h3>${esc(week.setup.label)}</h3>`
         if(week.setup.note) html += `<p>${week.setup.note}</p>`
         if(week.setup.code) html += codeBlock(week.setup.code, week.setup.lang)
+      } else if(week.setup){
+        html += setupBlock(week.setup)
       }
       if(week.setup2 && week.setup2.label){
         html += `<h4>${esc(week.setup2.label)}</h4>`
