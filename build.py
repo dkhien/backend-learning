@@ -4,7 +4,7 @@ Build script for Backend Engineer Learning Plan.
 Run: python3 build.py
 Output: index.html
 """
-import base64, glob, subprocess, sys, os
+import base64, glob, re, subprocess, sys, os
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 
@@ -31,7 +31,11 @@ if not module_files:
     sys.exit(1)
 print(f"Reading {len(module_files)} module files: {[os.path.basename(f) for f in module_files]}")
 
-modules_js = ',\n\n'.join(open(f).read() for f in module_files)
+def load_module(path):
+    text = open(path).read()
+    return re.sub(r'\bexport\s+default\s+', '', text, count=1)
+
+modules_js = ',\n\n'.join(load_module(f) for f in module_files)
 
 # Plan-level metadata (rarely changes — edit here if needed)
 PLAN_META = """

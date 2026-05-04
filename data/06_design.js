@@ -1,7 +1,7 @@
 // ================================================================
 // MODULE 6 — SYSTEM DESIGN
 // ================================================================
-{
+export default {
   id: "design", title: "System Design", color: "#42348c",
   tagClass: "tag-design", icon: "📐",
   desc: "Caching, message queues, and CAP theorem. The vocabulary and mental models to reason about architecture decisions — the level expected of a Senior Software Engineer.",

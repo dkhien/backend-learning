@@ -1,7 +1,7 @@
 // ================================================================
 // MODULE 1 — DATABASE
 // ================================================================
-{
+export default {
   id: "db", title: "Database Internals", color: "#1a5fb4",
   tagClass: "tag-db", icon: "🗄",
   desc: "The platform/backend team's most common fire drill — slow queries, deadlocks, schema issues. Weeks 1–4 build the depth to diagnose and fix these confidently.",

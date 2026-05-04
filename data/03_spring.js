@@ -1,7 +1,7 @@
 // ================================================================
 // MODULE 3 — SPRING INTERNALS
 // ================================================================
-{
+export default {
   id: "spring", title: "Spring Boot Internals", color: "#2a6614",
   tagClass: "tag-spring", icon: "🌱",
   desc: "Understand what Spring does at startup and at runtime. Knowing Spring's internals lets you read Backbase's code, debug startup failures, and reason about @Transactional without guessing.",

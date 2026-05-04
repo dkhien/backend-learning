@@ -1,7 +1,7 @@
 // ================================================================
 // MODULE 5 — NETWORKING
 // ================================================================
-{
+export default {
   id: "net", title: "Networking Fundamentals", color: "#0c6652",
   tagClass: "tag-net", icon: "🌐",
   desc: "TCP/IP, TLS, and HTTP — what happens between a client request and your Spring Boot controller. Understanding this lets you diagnose latency and connection issues at the network level.",

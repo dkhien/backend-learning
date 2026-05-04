@@ -1,7 +1,7 @@
 // ================================================================
 // MODULE 4 — CLOUD / K8S
 // ================================================================
-{
+export default {
   id: "infra", title: "Cloud & Kubernetes", color: "#952020",
   tagClass: "tag-infra", icon: "☁",
   desc: "Containerise your Spring Boot app, deploy to Kubernetes, configure health probes correctly, write Helm charts. This is how Backbase upgrades and deployments actually work.",

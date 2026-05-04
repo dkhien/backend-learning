@@ -1,7 +1,7 @@
 // ================================================================
 // MODULE 2 — JAVA PERFORMANCE
 // ================================================================
-{
+export default {
   id: "java", title: "Java Performance", color: "#c87840",
   tagClass: "tag-java", icon: "☕",
   desc: "JVM internals, GC tuning, memory leak diagnosis, and thread pool mechanics. The skills to diagnose production performance incidents without guessing.",
