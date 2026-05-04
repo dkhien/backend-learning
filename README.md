@@ -35,7 +35,7 @@ data/
 After any edit, rebuild:
 
 ```bash
-python3 build.py
+node build.js
 ```
 
 This regenerates `index.html`. Requires Python 3 and Node.js (for syntax validation).
@@ -53,8 +53,7 @@ See `CLAUDE.md` for detailed editing instructions and data schema reference.
 
 ## Requirements
 
-- Python 3 (to run the build)
-- Node.js (build uses `node --check` for JS syntax validation)
+- Node.js (to run the build and for JS syntax validation)
 - Docker (for database and infra labs)
 - A Postgres client (psql or DBeaver) for DB labs
 - Java 17+ and Maven for Spring Boot labs

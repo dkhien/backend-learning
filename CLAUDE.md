@@ -39,7 +39,7 @@ in the same directory as this CLAUDE.md (except module data, which is in `data/`
 After any edit, run this to regenerate the HTML:
 
 ```bash
-python3 build.py
+node build.js
 ```
 
 The build script:
@@ -386,7 +386,7 @@ To:
 Just run the build — it validates all files before writing output:
 
 ```bash
-python3 build.py
+node build.js
 ```
 
 Each module file is a standalone JS object literal and is valid JS on its own
