@@ -20,7 +20,7 @@ export default {
       "Use /actuator/conditions to debug why a bean did or did not get created",
       "Resolve a ConflictingBeanDefinitionException caused by a Backbase starter"
     ],
-    diagram: { type: "spring-lifecycle", caption: "Spring bean lifecycle — startup sequence" },
+    diagram: { type: "spring-lifecycle", caption: "Spring bean lifecycle — startup sequence", intro: "Spring Boot doesn't just instantiate your classes — it runs every bean through a precise lifecycle before the application is ready to serve requests. The order matters: constructor, dependency injection, @PostConstruct, then ready. Understanding this tells you why @PostConstruct is the right place for initialisation code (dependencies are available), why circular dependencies fail at a specific phase, and how Spring Boot auto-configuration registers hundreds of beans transparently via @Conditional checks." },
     setup: {
       desc: "Create a minimal Spring Boot app with the actuator. You will use it for both Week 7 and Week 8.",
       steps: [{
@@ -169,7 +169,7 @@ public class AuditConfig {
       "Distinguish REQUIRED vs REQUIRES_NEW propagation — and explain when each is right in banking",
       "Trace a request through the Spring Security FilterChain"
     ],
-    diagram: { type: "aop", caption: "CGLIB proxy interception — how @Transactional actually works" },
+    diagram: { type: "aop", caption: "CGLIB proxy interception — how @Transactional actually works", intro: "@Transactional, @Cacheable, and @Async don't modify your code directly — Spring wraps your bean in a CGLIB proxy at startup. When an external caller invokes your method, the proxy intercepts the call first and applies the annotation's behaviour (opening a transaction, checking the cache, dispatching async). The critical trap is self-invocation: when your own method calls another method on the same class, it calls the real bean directly — the proxy is never involved and the annotation is silently ignored. This is the single most common source of @Transactional bugs in production Spring code." },
     labs: [
       {
         num: 1, title: "Break @Transactional with self-invocation",

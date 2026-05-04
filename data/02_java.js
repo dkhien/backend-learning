@@ -20,7 +20,7 @@ export default {
       "Compare G1GC vs ZGC pause times under identical load",
       "Tune -Xms, -Xmx, and MaxGCPauseMillis for a banking service profile"
     ],
-    diagram: { type: "jvm", caption: "JVM heap regions and the object lifecycle" },
+    diagram: { type: "jvm", caption: "JVM heap regions and the object lifecycle", intro: "The JVM does not use one block of memory — it divides memory into distinct regions, each with different behaviour. The heap (Eden, Survivor, Old Gen) is GC-managed and is what -Xmx limits. But Metaspace, thread stacks, and direct buffers live outside the heap entirely. If you size a Kubernetes container based only on heap, the off-heap regions cause OOMKill. Understanding this layout is the foundation for everything in this week and the K8s resource tuning week." },
     labs: [
       {
         num: 1, title: "Enable GC logging and read what you see",
@@ -148,7 +148,7 @@ public String gcStress() throws InterruptedException {
       "Recognise what HikariCP pool exhaustion looks like in a thread dump",
       "Name four common memory leak patterns in Spring Boot"
     ],
-    diagram: { type: "memleak", caption: "Normal vs leaking heap — what jstat shows over time" },
+    diagram: { type: "memleak", caption: "Normal vs leaking heap — what jstat shows over time", intro: "In a healthy JVM, heap usage rises during requests and drops after GC — a sawtooth pattern that stays near a stable baseline. A memory leak produces a different pattern: heap grows steadily past GC cycles because live references prevent the collector from freeing unreachable objects. It keeps growing until it hits the maximum heap size and crashes with OutOfMemoryError. The chart below shows both patterns. You will reproduce the leaking pattern this week using jstat and track it in real time." },
     labs: [
       {
         num: 1, title: "Build a leak, observe it, find it",

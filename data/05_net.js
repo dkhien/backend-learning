@@ -7,7 +7,7 @@ export default {
   desc: "TCP/IP, TLS, and HTTP — what happens between a client request and your Spring Boot controller. Understanding this lets you diagnose latency and connection issues at the network level.",
   weeks: [
   {
-    id: "net-w11", num: "Week 11", module: "net", optional: true,
+    id: "net-w14", num: "Week 14", module: "net", optional: true,
     title: "OSI Layers & TCP/IP Debugging",
     subtitle: "Map all 7 layers to real tools — diagnose network problems at the right layer",
     hours: 11, tagClasses: ["tag-net","tag-time"],
@@ -25,7 +25,7 @@ export default {
       "Use openssl s_client to inspect TLS certificates and handshake",
       "Distinguish connection refused vs timeout — and know what each means for diagnosis"
     ],
-    diagram: { type: "osi", caption: "OSI model — every layer, its tools, and its banking relevance" },
+    diagram: { type: "osi", caption: "OSI model — every layer, its tools, and its banking relevance", intro: "Network debugging becomes much faster once you know which layer to investigate first. Is the machine reachable at all? (Layer 3 — ping). Is the port open? (Layer 4 — nc/netstat). Is TLS valid? (Layer 6 — openssl). Is the application responding? (Layer 7 — curl). The OSI model gives you a systematic path from physical cable to application logic. The table below maps each layer to the tools you will use this week and the banking-specific scenarios where each layer becomes relevant." },
     labs: [
       {
         num: 1,
@@ -232,7 +232,7 @@ Write-Host "Expires: $($cert.GetExpirationDateString())"` }
   },
 
   {
-    id: "net-w12", num: "Week 12", module: "net", optional: true,
+    id: "net-w15", num: "Week 15", module: "net", optional: true,
     title: "HTTP, DNS & Application-Layer Debugging",
     subtitle: "curl for HTTP, dig/nslookup for DNS, and fixing the JVM DNS cache in K8s",
     hours: 10, tagClasses: ["tag-net","tag-time"],
@@ -245,7 +245,7 @@ Write-Host "Expires: $($cert.GetExpirationDateString())"` }
       "Find and fix the JVM DNS cache bug that causes stale routing after K8s rolling upgrades",
       "Understand what HTTP/3 and QUIC solve that HTTP/2 does not"
     ],
-    diagram: { type: "http-evolution", caption: "HTTP evolution — eliminating head-of-line blocking at each generation" },
+    diagram: { type: "http-evolution", caption: "HTTP evolution — eliminating head-of-line blocking at each generation", intro: "HTTP/1.1 sends one request at a time per connection. Browsers work around this by opening 6 parallel connections per domain — wasteful and still limited. HTTP/2 solves this with multiplexing: many logical streams share a single TCP connection. But a single lost TCP packet freezes all HTTP/2 streams until TCP retransmits it — head-of-line blocking at the transport layer. HTTP/3 replaces TCP with QUIC over UDP, giving each stream independent loss recovery. The diagram below shows how each generation handles 3 concurrent requests." },
     labs: [
       {
         num: 1,

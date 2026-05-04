@@ -8,7 +8,7 @@ export default {
   weeks: [
 
   {
-    id: "design-w13", num: "Week 13", module: "design",
+    id: "design-w16", num: "Week 16", module: "design",
     title: "Caching, Message Queues & CAP Theorem",
     subtitle: "Three concepts you will reference in every architecture discussion",
     hours: 13, tagClasses: ["tag-design","tag-time"], tagLabels: ["System Design","~13 hours"],
@@ -20,7 +20,7 @@ export default {
       "Explain consumer group partition assignment and what happens when a consumer fails",
       "Articulate CAP theorem with concrete banking examples for the CP vs AP choice"
     ],
-    diagram: { type: "cap", caption: "CAP theorem — the real choice is CP vs AP when partitions occur" },
+    diagram: { type: "cap", caption: "CAP theorem — the real choice is CP vs AP when partitions occur", intro: "In any distributed system, a network partition can occur where two parts of the cluster can't communicate. When that happens, you face a forced choice: refuse requests that can't be guaranteed correct (CP — stay consistent), or return possibly stale data and keep serving (AP — stay available). You cannot be both. CAP theorem formalises this unavoidable tradeoff. For a banking system, the answer differs by data type: account balances demand consistency, while product catalogues can tolerate staleness." },
     labs: [
       {
         num: 1, title: "Redis cache-aside — implement and break it",

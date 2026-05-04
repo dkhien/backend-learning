@@ -37,7 +37,7 @@ const modules = await Promise.all(
 const PLAN = {
   meta: {
     title: "Backend Engineer Learning Plan",
-    subtitle: "13 weeks · Java / Spring Boot · Banking platforms",
+    subtitle: "16 weeks · Java / Spring Boot · Banking platforms",
     context: "A hands-on learning plan for backend engineers working with Java, Spring Boot, and cloud-native banking platforms. Covers database internals, JVM performance, Spring internals, Kubernetes, networking, and system design."
   },
   quality_refs: [
@@ -99,7 +99,7 @@ const html = `<!DOCTYPE html>
   <nav class="sidebar">
     <div class="sb-logo">
       <div class="sb-logo-title">Backend Engineer Plan</div>
-      <div class="sb-logo-sub">15 weeks · Java / Spring Boot</div>
+      <div class="sb-logo-sub">16 weeks · Java / Spring Boot</div>
       <div class="sb-progress" id="sb-progress">Loading…</div>
     </div>
     <div style="padding:.4rem 0 0">

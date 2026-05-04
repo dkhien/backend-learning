@@ -21,7 +21,7 @@ export default {
       "Identify five common patterns that silently prevent an index from being used",
       "Choose the correct column order for a composite index"
     ],
-    diagram: { type: "btree", caption: "B-tree traversal vs sequential scan — the core mental model" },
+    diagram: { type: "btree", caption: "B-tree traversal vs sequential scan — the core mental model", intro: "When Postgres evaluates a WHERE clause on an indexed column, it doesn't scan every row — it traverses a B-tree. The tree structure narrows the search at each level, reaching the target row in 3–4 page reads regardless of table size. Below is the structure you will see reflected in EXPLAIN ANALYZE output this week. Compare the read count for an index scan vs a sequential scan on a 500 000-row table." },
     setup: {
       desc: "Spin up Postgres and seed the banking lab database. You will reuse this database for all four DB weeks.",
       steps: [
@@ -191,7 +191,7 @@ SELECT COUNT(*) FROM transactions;`, lang: "sql" }
       "Explain when to use DB triggers vs application-level audit logic",
       "Understand three partitioning strategies and their tradeoffs"
     ],
-    diagram: { type: "partition", caption: "Partition pruning — only the target month is scanned" },
+    diagram: { type: "partition", caption: "Partition pruning — only the target month is scanned", intro: "A range-partitioned table stores rows in separate physical sub-tables by partition key range. When you filter by month, Postgres checks partition bounds at planning time and eliminates every partition outside your range — before reading a single row. The diagram below shows how a single-month query on a 12-partition table touches only one partition, leaving 11 completely unread." },
     labs: [
       {
         num: 1, title: "Design a partitioned transactions table",
@@ -532,7 +532,7 @@ mvn liquibase:rollback -Dliquibase.rollbackCount=1`,
       "Configure HikariCP and reproduce connection pool exhaustion",
       "Apply the correct pool sizing formula for a banking service"
     ],
-    diagram: { type: "hikari", caption: "HikariCP pool exhaustion — what cascading timeouts look like" },
+    diagram: { type: "hikari", caption: "HikariCP pool exhaustion — what cascading timeouts look like", intro: "HikariCP is Spring Boot's default connection pool. It maintains a fixed number of live database connections and hands them to application threads on demand. When all connections are in use, incoming threads queue and wait up to connectionTimeout (default 30 seconds). Exceed that and you get a hard exception. The diagram below shows a pool of 5 under load from 10 concurrent threads — the pattern you will reproduce and diagnose this week." },
     labs: [
       {
         num: 1, title: "Break the optimizer with stale statistics",
@@ -1050,7 +1050,7 @@ List<Account> findAll();`,
       "Fix a deadlock using consistent lock ordering",
       "Explain all four isolation levels and what anomalies each prevents"
     ],
-    diagram: { type: "isolation", caption: "Isolation levels vs anomalies — what each level prevents" },
+    diagram: { type: "isolation", caption: "Isolation levels vs anomalies — what each level prevents", intro: "SQL defines four isolation levels that control what one transaction can see when other transactions are running concurrently. Getting this wrong in banking means reading a stale account balance, seeing a phantom row in a retry loop, or losing an update when two transactions modify the same record simultaneously. The table below maps each level to what it prevents — and the banking consequence of each choice." },
     labs: [
       {
         num: 1, title: "Demonstrate isolation level anomalies",

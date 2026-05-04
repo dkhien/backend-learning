@@ -124,8 +124,9 @@ function checklistHTML(id, items){
 // ── Diagrams ──────────────────────────────────────────────────
 function diagramHTML(d){
   if(!d) return ''
+  const intro = d.intro ? `<p class="diagram-intro">${esc(d.intro)}</p>` : ''
   const inner = DIAGRAMS[d.type] ? DIAGRAMS[d.type]() : `<p>Diagram: ${d.type}</p>`
-  return `<div class="diagram-wrap"><div class="diagram-title">${esc(d.caption)}</div>${inner}</div>`
+  return `<div class="diagram-wrap">${intro}<div class="diagram-title">${esc(d.caption)}</div>${inner}</div>`
 }
 
 const DIAGRAMS = {
@@ -363,6 +364,33 @@ const DIAGRAMS = {
       </tbody>
     </table>`
   },
+  'k8s-arch'(){
+    return `<div style="display:flex;flex-direction:column;gap:12px">
+      <div>
+        <div style="font-size:12px;font-weight:700;color:var(--muted);margin-bottom:8px">Control Plane — the brain (you never run workloads here)</div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">
+          ${[
+            {t:'API Server',b:'Single entry point for all cluster changes. Every kubectl command hits here.'},
+            {t:'etcd',b:'Distributed key-value store. Holds all cluster state. The source of truth.'},
+            {t:'Scheduler',b:'Decides which node runs each new pod based on resource availability.'},
+            {t:'Controller Manager',b:'Runs reconciliation loops — e.g. keeps 3 replicas running, restarts failed pods.'},
+          ].map(c=>`<div class="flow-node db" style="flex-direction:column;align-items:flex-start;padding:10px 12px;text-align:left"><div style="font-weight:700;margin-bottom:5px;font-size:12.5px">${c.t}</div><div style="font-size:11.5px;opacity:.85;line-height:1.5">${c.b}</div></div>`).join('')}
+        </div>
+      </div>
+      <div style="text-align:center;font-size:13px;color:var(--muted)">↓ kubelet on each worker node watches API Server for pod assignments</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        ${['Worker Node 1','Worker Node 2'].map((n,i)=>`
+          <div style="border:1px solid var(--border);border-radius:var(--radius);padding:10px 12px;background:var(--bg2)">
+            <div style="font-size:12px;font-weight:700;color:var(--muted);margin-bottom:8px">${n}</div>
+            <div class="flow-node good" style="margin-bottom:6px;font-size:12px">Pod: banking-app-${i+1}<small>container running your Docker image</small></div>
+            <div class="flow-node" style="font-size:12px">kubelet + kube-proxy<small>node agent + in-cluster network rules</small></div>
+          </div>`).join('')}
+      </div>
+      <div style="padding:10px 14px;background:var(--teal-bg);border:1px solid var(--teal-lt);border-radius:var(--radius);font-size:13px;color:var(--teal)">
+        <strong>Key insight:</strong> You describe <em>desired state</em> in YAML and apply it to the API Server. The control plane continuously reconciles the real cluster to match what you declared — automatically restarting pods, rescheduling after node failure, and scaling to meet your spec.
+      </div>
+    </div>`
+  },
   cap(){
     return `<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
       <div class="flow-node db" style="flex-direction:column;align-items:flex-start;padding:16px;text-align:left">
@@ -461,13 +489,14 @@ function buildContent(){
     'db-w3': 'n1',
     'java-w5': 'gc',
     'spring-w8': 'proxy',
-    'net-w11': 'tcp',
-    'infra-w10': 'oomkill',
+    'net-w14': 'tcp',
+    'infra-w11': 'oomkill',
   }
   // Weeks with multiple viz — mount directly
   const multiViz = {
-    'infra-w10': ['hpa', 'deploy', 'expandcontract'],
-    'infra-w10b': ['gitops'],
+    'infra-w11': ['hpa'],
+    'infra-w12': ['deploy', 'expandcontract'],
+    'infra-w13': ['gitops'],
   }
   Object.entries(vizMap).forEach(([weekId, type]) => {
     const wrap = document.querySelector('#'+weekId+' .diagram-wrap')

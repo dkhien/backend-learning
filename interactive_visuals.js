@@ -34,7 +34,7 @@ const VIZ = {
     }
     window._btreeNodes = nodes
 
-    let svg = `<svg viewBox="0 0 640 280" style="width:100%;font-family:inherit">`
+    let svg = `<svg viewBox="0 0 640 295" style="width:100%;font-family:inherit">`
     // Draw edges
     for (const [id, n] of Object.entries(nodes)) {
       for (const c of n.children) {
@@ -520,19 +520,19 @@ VIZ.oomkill = function(el) {
       <div>
         <div class="viz-oom-label">Container memory limit: 512 MB</div>
         <div class="viz-oom-bar-wrap">
-          <div class="viz-oom-seg" style="height:57%;background:var(--blue);color:#fff">
+          <div class="viz-oom-seg" style="flex-grow:57;background:var(--blue);color:#fff">
             <span>Heap</span><small>384 MB (75%)</small>
           </div>
-          <div class="viz-oom-seg" style="height:20%;background:var(--amber);color:#fff">
+          <div class="viz-oom-seg" style="flex-grow:20;background:var(--amber);color:#fff">
             <span>Metaspace</span><small>~100 MB</small>
           </div>
-          <div class="viz-oom-seg" style="height:10%;background:var(--teal);color:#fff">
+          <div class="viz-oom-seg" style="flex-grow:10;background:var(--teal);color:#fff">
             <span>Thread stacks</span><small>~50 MB</small>
           </div>
-          <div class="viz-oom-seg" style="height:8%;background:var(--purple);color:#fff">
+          <div class="viz-oom-seg" style="flex-grow:8;background:var(--purple);color:#fff">
             <span>Netty buffers</span><small>~40 MB</small>
           </div>
-          <div class="viz-oom-seg viz-oom-over" style="height:5%;background:var(--red)">
+          <div class="viz-oom-seg viz-oom-over" style="flex-grow:5;background:var(--red)">
             <span>⚠ Over limit</span>
           </div>
         </div>
@@ -541,16 +541,16 @@ VIZ.oomkill = function(el) {
       <div>
         <div class="viz-oom-label">Container memory limit: 768 MB</div>
         <div class="viz-oom-bar-wrap">
-          <div class="viz-oom-seg" style="height:75%;background:var(--blue);color:#fff">
+          <div class="viz-oom-seg" style="flex-grow:75;background:var(--blue);color:#fff">
             <span>Heap</span><small>576 MB (75%)</small>
           </div>
-          <div class="viz-oom-seg" style="height:13%;background:var(--amber);color:#fff">
+          <div class="viz-oom-seg" style="flex-grow:13;background:var(--amber);color:#fff">
             <span>Metaspace</span><small>~100 MB</small>
           </div>
-          <div class="viz-oom-seg" style="height:6%;background:var(--teal);color:#fff">
+          <div class="viz-oom-seg" style="flex-grow:6;background:var(--teal);color:#fff">
             <span>Thread stacks</span><small>~50 MB</small>
           </div>
-          <div class="viz-oom-seg" style="height:5%;background:var(--purple);color:#fff">
+          <div class="viz-oom-seg" style="flex-grow:5;background:var(--purple);color:#fff">
             <span>Buffers</span><small>~40 MB</small>
           </div>
         </div>
